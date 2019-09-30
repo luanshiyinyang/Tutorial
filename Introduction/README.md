@@ -1,4 +1,4 @@
-# TensorFlow2-TensorFlow简介
+# TensorFlow2简介
 <img src='tf2.gif' alt='' />
 
 
