@@ -37,7 +37,7 @@
 ## 张量排序
 - `tf.sort(a, direction)/tf.argsort(a, direction)`
   - 按照指定的升序或者降序方向，对张量进行排序。当张量的维度大于1时，默认对最后一个维度进行排序。
-  - 示例![](./asset/sort.png)
+  - 示例。![](./asset/sort.png)
 - `tf.math.top_k(a, k)`
   - 找到k个最大或者最小值，返回值和该值所在下标。
   - 示例。![](./asset/topk.png)
