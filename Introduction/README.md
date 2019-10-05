@@ -1,11 +1,11 @@
 # TensorFlow2简介
-<img src='tf2.gif' alt='' />
+<img src='./asset/tf2.gif' alt='' />
 
 
 ## 简介
 - TensorFlow是谷歌开源的一款深度学习框架，首次发布于2015年，TensorFlow2发布于2019年，TensorFlow2.0.0正式稳定版发布于2019年10月1日，而今，TensorFlow已被很多企业与创业公司广泛用于自动化工作任务和开发新系统，其在分布式训练支持、可扩展的生产和部署选项、多设备支持（如安卓）方面备受好评。
 - TensorFlow使用数据流模型（即计算图）来描述计算过程，并将它们映射到了各种不同的硬件平台上，包括Linux、MacOS、Windows、Android和iOS等，从x86架构到ARM架构，从拥有单个或多个CPU的服务器到大规模GPU集群。凭借着统一的架构，TensorFlow可以跨越多种平台进行部署，显著地降低了机器学习系统的应用部署难度。
-- 相比于对于新手不太友好的TensorFlow1.0，TensorFlow2.0采用了比较简易的新框架，并且将Keras收购为子模块，大大加强了集成度，减少了使用难度。
+- 相比于对于新手不太友好的TensorFlow1.0，TensorFlow2.0采用了比较简易的新框架，并且将Keras收购为子模块，大大加强了集成度，减少了使用难度。这里稍微提一下Keras，它是一个独立可以pip安装的库，后端可以选择Mxnet、Theano、TensorFlow；它也是TensorFlow从1.x版本就内置的一个子模块，通过tf.keras使用，这种方法使用只能使用TensorFlow作为运算后端。推荐使用后一种方法使用keras，它和TensorFlow是密不可分的，keras的简洁和TF的灵活必须配合使用，缺一不可。
 
 
 ## 使用原因
