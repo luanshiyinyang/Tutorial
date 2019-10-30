@@ -44,7 +44,7 @@
     - 早停是防止过拟合的一种常用手段，当训练时验证集metric已经饱和或者开始变坏达到指定次数时，停止训练。
     - 通过keras的callbacks模块可以很方便实现这个功能。
         ```python
-        es = rl = keras.callbacks.EarlyStopping(monitor='val_acc', patience=5)
+        es = keras.callbacks.EarlyStopping(monitor='val_acc', patience=5)
         ```
 
 
