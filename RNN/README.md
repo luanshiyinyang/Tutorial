@@ -42,7 +42,7 @@ $$
 ## 循环神经网络单元
 在TensorFlow2中，对循环神经网络单元的运算进行了简单的封装，通过不断将t时刻的x作为输入送入RNN模块中进行矩阵运算。而第二节所提出的RNN结构是最为简单基础的RNN结构，在keras模块下封装为SimpleRNNCell。该结构进行运算的输出为`out, h1 = call(x, h0)`，这里的out和h1是同一个东西，之所以返回两次是为了和LSTM等结构做区分。RNNCell也可以堆叠以获取更高层的语义信息。![](./asset/simplernn.png)![](./asset/simplernn2.png)![](./asset/simplernn3.png)
 
-实际训练过程中，以文本信息为演示场景，共有两种方法，一种是底层控制（较为灵活，写起来繁琐），一种借助keras的api堆叠SimpleRNN（较为死板，写起来简单）。两种方式的输出都是第二层RNN后t=80时的状态（针对本例）。![](./asset/simplernn_train.png)![](./asset/simplernn_train.png)
+实际训练过程中，以文本信息为演示场景，共有两种方法，一种是底层控制（较为灵活，写起来繁琐），一种借助keras的api堆叠SimpleRNN（较为死板，写起来简单）。两种方式的输出都是第二层RNN后t=80时的状态（针对本例）。![](./asset/simplernn_train.png)![](./asset/simplernn_train2.png)
 
 
 ## LSTM（长短时记忆单元）
