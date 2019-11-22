@@ -274,6 +274,8 @@ for epoch in range(1000):
     save_images(x_hat, 'images/rec_epoch%d.png' % epoch)
 
 ```
+
+
 ## 补充说明
 - 本文介绍了Auto-Encoder在TensorFlow2中的实现，更详细的可以查看官方文档。
 - 具体的代码同步至[我的Github仓库](https://github.com/luanshiyinyang/Tutorial/tree/TensorFlow2)欢迎star；博客同步至我的[个人博客网站](https://luanshiyinyang.github.io)，欢迎查看其他文章。
