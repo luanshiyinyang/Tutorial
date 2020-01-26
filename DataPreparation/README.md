@@ -63,6 +63,7 @@ if __name__ == '__main__':
 3. 训练完成，释放内存，进行下一批数据读取。
 
 实验效果如下，可以看到，按批次取出了数据和标签。
+
 ![](./assets/loader.png)
 
 其代码如下。
@@ -133,8 +134,90 @@ for epoch in range(epochs):
   - **size**参数设置裁减后的图片大小，为整型或者元组，若为元组要符合`(height, width)`格式，若int型数则自动按照`(size, size)`进行长宽设定。
   - 下图左侧为原图，右侧为随机裁减的结果。![](./assets/center_crop.png)
 - 随机长宽比裁减
-  - 
+  - `transforms.RandomResizedCrop(size, scale=(0.08, 1.0), ratio=(0.75, 1.333), interpolation=2)`
+  - 随机大小且随机长宽比裁减图片，最后resize到指定的大小。
+  - **size**设置输出图片的大小，为整型或者元组，可以是`(h, w)`或者`(size, size)`格式。
+  - **scale**设置随机裁减的大小区间，为浮点型，`(a, b)`表示裁减后会在a倍到b倍大小之间。
+  - **ratio**设置随机长宽比，浮点型。
+  - **interpolation**设置插值方法，默认为双线性插值。
+- 上下左右中心裁减
+  - `transforms.FiveCrop(size)`
+  - 对图片进行上下左右中心进行裁减，得到5个结果图片，返回一个4D的Tensor。
+  - **size**参数同上。
+- 上下左右中心裁减并翻转
+  - `ransforms.TenCrop(size, vertical_flip=False)`
+  - 对图片进行上下左右中心裁减后并翻转，共得到10张图片，返回一个4D的Tensor。
+  - **size**参数同上。
+  - **vertical_flip**设置是否进行垂直翻转，布尔型，默认水平翻转。
 
+### 转动（Flip and Rotation）
+- 概率水平翻转
+  - `transforms.RandomHorizontalFlip(p)`
+  - 以概率p对图片进行水平翻转。
+  - **p**设置进行翻转的概率，浮点型，默认0.5。
+  - 下图左侧为原图，右侧为随机裁减的结果。![](./assets/random_h_flip.png)
+- 概率垂直翻转
+  - `transforms.RandomVerticalFlip(size)`
+  - 以概率p对图片进行垂直翻转。
+  - 参数同上。
+- 随机旋转
+  - `transforms.RandomRotation(degrees, resample=None, expand=False, center=None, fill=None)`
+  - 按照degree度数进行随机旋转。
+  - **degrees**设置旋转最大角度，数值型或者元组，若单数值则默认`(-degrees, degree)`之间随机旋转，若两个数字的元组则表示(a, b)区间进行随机旋转。
+  - **resample**设置重采样方法，有下面三个选项`PIL.Image.NEAREST, PIL.Image.BILINEAR, PIL.Image.BICUBIC`。
+  - **expand**设置是否扩展图片以容纳旋转结果，布尔型，默认False。
+  - **center**设置是否中心旋转，默认左上角旋转。
+  - **fill**设置填充方法，同裁减部分的参数。
+  - 下图右侧为随机旋转的结果图。![](./assets/random_rotation.png)
+
+### 图像变换
+- 图片大小调整
+  - `transforms.Resize(size, interpolation=2)`
+  - 按照指定size调整图片大小。
+  - **size**设置图片大小，`(h, w)`格式，若为int数，则按照`size*height/width, size`进行调整。
+  - **interpolation**设置插值方法，默认`PIL.Image.BILINEAR`。
+- 图像标准化
+  - `transforms.Normalize(mean, std)`
+  - 对图像按通道进行标准化，即减均值后除以标准差，输入图片`(h, w, c)`格式。
+- 转为Tensor
+  - `transforms.ToTensor()`
+  - 将PIL Image或者Numpy.ndarray转为PyTorch的Tensor类型，并归一化至`[0-1]`，注意是直接除以255。
+- 填充
+  - `transforms.Pad(padding, fill=0, padding_mode='constant')`
+  - 对图像进行填充。
+  - 参数同上面的`RandomCrop`。
+- 亮度、对比度和饱和度
+  - `transforms.ColorJitter(brightness=0, contrast=0, saturation=0, hue=0)`
+  - 修改亮度、对比度和饱和度。
+- 灰度化
+  - `transforms.Grayscale(num_output_channels=1)`
+  - 图片转为灰度图。
+  - **num_output_channels**，输出的灰度图通道数，默认为1，为3时RGB三通道值相同。
+- 线性变换
+  - `transforms.LinearTransformation(transformation_matrix)`
+  - 对矩阵做线性变换，可用于白化处理。
+- 仿射变换
+  - `transforms.RandomAffine(degrees, translate=None, scale=None, shear=None, resample=False, fillcolor=0)`
+- 概率灰度化
+  - `transforms.RandomGrayscale(p)`
+  - 以概率p进行灰度化。
+- 转换为PIL Image
+  - `transforms.ToPILImage(mode)`
+  - 将PyTorch的Tensor或者Numpy的ndarray转为PIL的Image。
+  - **mode**参数设置准换后的图片格式，mode为None时单通道，mode为3时转为RGB，为4时转为RGBA。
+- Lambda
+  - `transforms.Lambda(func)`
+  - 将自定义的图像变换函数应用到其中。
+  - func是一个lambda函数。
+
+### transform操作
+PyTorch不只是能对图像进行变换，还能对这些变换进行随机选择和组合。
+- `transforms.RandomChoice(transforms)`
+  - 随机选择某一个变换进行作用。
+- `transforms.RandomApply(transforms, p=0.5)`
+  - 以概率p进行变幻的选择。
+- `transforms.RandomOrder(transforms)`
+  - 随机打乱变换的顺序。
 
 
 ## 补充说明
