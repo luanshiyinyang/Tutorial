@@ -27,11 +27,6 @@
 下面的代码构建了一个最简单的Dataset，事实上训练时需要定义很多预处理和增强方法，这里略过。
 
 ```python
-"""
-Author: Zhou Chen
-Date: 2020/1/26
-Desc: 自定义数据集
-"""
 from torch.utils.data import Dataset
 import pandas as pd
 from PIL import Image
