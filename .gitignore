@@ -5,3 +5,6 @@ __pycache__/
 
 # file
 *.zip
+Caltech101/
+101_ObjectCategories/
+*.csv
