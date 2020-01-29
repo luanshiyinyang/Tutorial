@@ -72,7 +72,7 @@ optimizer = optim.SGD([w1, w2], lr=0.1)
 print(optimizer.param_groups)
 ```
 
-![](./assets/param_groups.png))
+![](./assets/param_groups.png)
 
 ### 梯度清零
 事实上，PyTorch不会在一次优化完成后清零之前计算得到的梯度，所以需要每次优化完成后手动清零，即调用优化器的`zero_grad()`方法。
