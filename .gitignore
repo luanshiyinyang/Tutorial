@@ -2,6 +2,9 @@
 .idea/
 __pycache__/
 .vscode/
+logs/
+runs/
+mnist/
 
 # file
 *.zip

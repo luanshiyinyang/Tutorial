@@ -4,3 +4,5 @@ glob3
 tqdm
 pandas
 matplotlib
+tensorboard
+tensorboardx
