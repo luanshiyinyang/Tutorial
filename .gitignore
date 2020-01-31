@@ -11,3 +11,4 @@ mnist/
 Caltech101/
 101_ObjectCategories/
 *.csv
+*.pkl

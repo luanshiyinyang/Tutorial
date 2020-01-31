@@ -32,7 +32,7 @@ valid_transform = transforms.Compose([
 train_data = MyDataset(desc_train, transform=train_transform)
 valid_data = MyDataset(desc_valid, transform=valid_transform)
 
-# 构建DataLoder
+# 构建DataLoader
 train_loader = DataLoader(dataset=train_data, batch_size=batch_size, shuffle=True)
 valid_loader = DataLoader(dataset=valid_data, batch_size=batch_size)
 
