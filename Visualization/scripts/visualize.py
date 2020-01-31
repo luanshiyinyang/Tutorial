@@ -17,7 +17,7 @@ from tensorboardX import SummaryWriter
 epochs = 10
 writer = SummaryWriter('logs/')
 
-'''
+
 loss = 10
 for epoch in range(epochs):
     writer.add_scalar("logs/scalar_exp", loss, epoch)
@@ -66,7 +66,7 @@ dummy_input = Variable(torch.rand(13, 1, 28, 28))
 model = Net()
 with SummaryWriter(comment='Net') as w:
     w.add_graph(model, (dummy_input, ))
-'''
+
 
 dataset = datasets.MNIST(os.path.join("..", "..", "Data", "mnist"), train=False, download=True)
 images = dataset.test_data[:100].float()
