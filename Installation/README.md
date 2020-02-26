@@ -18,16 +18,18 @@ Docker支持主流的Ubuntu发行版（本文以Ubuntu 18.04LTS版本为例）�
 - `sudo apt-get install -y apt-transport-https ca-certificates software-properties-common curl`
 
 ### 添加GPG密钥并添加docker-ce国内源
-- `curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -`
+`curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -`
   - 显示OK表示添加成功，否则无法连接至对应网站，使用其他源即可。
-  ```shell
-  sudo add-apt-repository \
-  "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu \
-  $(lsb_release -cs) \
-  stable"
-  ```
-  - 该命令中`$(lsb_release -cs)`变量其实是查询系统版本代号的结果，Ubuntu18.04是bionic，stable表示稳定版改为edge或者test获取测试版软件。
-- `sudo apt-get update`
+
+```shell
+ sudo add-apt-repository \
+ "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu \
+ $(lsb_release -cs) \
+ stable"
+ ```
+- 该命令中`$(lsb_release -cs)`变量其实是查询系统版本代号的结果，Ubuntu18.04是bionic，stable表示稳定版改为edge或者test获取测试版软件。
+
+`sudo apt-get update`
 
 ### 安装最新版Docker-CE
 - `sudo apt-get install -y docker-ce`
