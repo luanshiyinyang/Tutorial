@@ -171,5 +171,5 @@ for step, (x, y) in enumerate(train_generator):
 
 
 ## 补充说明
-本文主要介绍使用Keras对图像数据的加载、增广、使用等，具体代码可以查看我的Github，欢迎Star或者Fork。
+本文主要介绍使用Keras对图像数据的加载、增广、使用等，具体代码可以查看[我的Github](https://github.com/luanshiyinyang/Tutorial/tree/Keras)，欢迎Star或者Fork。
 
