@@ -1,0 +1,6 @@
+numpy
+tensorflow>=2.1
+glob3
+tqdm
+pandas
+matplotlib

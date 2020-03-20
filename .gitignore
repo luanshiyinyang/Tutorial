@@ -1,4 +1,10 @@
 # folder
 .idea/
 __pycache__/
+101_ObjectCategories/
+Caltech101/
+
+# file
+*.zip
+*.csv
 
