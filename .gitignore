@@ -7,4 +7,5 @@ Caltech101/
 # file
 *.zip
 *.csv
+*.h5
 
