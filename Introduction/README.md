@@ -60,4 +60,4 @@ Fastai中的训练方法如fit一般有以下参数。
 
 
 ## 补充说明
-本文初步介绍Fastai框架，这是基于PyTorch的一个上层框架，是2019年以来一个流行的选择，[官方文档地址](https://docs.fast.ai/)给出，目前没有中文文档。具体代码见[我的Github](https://github.com/luanshiyinyang/Tutorial/tree/Fastai/Start)，欢迎star或者fork。关于Fastai更多文章可以查看[我的专栏](https://blog.csdn.net/zhouchen1998/category_8916629.html)。
+本文初步介绍Fastai框架，这是基于PyTorch的一个上层框架，是2019年以来一个流行的选择，[官方文档地址](https://docs.fast.ai/)给出，目前没有中文文档。具体代码见[我的Github](https://github.com/luanshiyinyang/Tutorial/tree/Fastai)，欢迎star或者fork。关于Fastai更多文章可以查看[我的专栏](https://blog.csdn.net/zhouchen1998/category_8916629.html)。
