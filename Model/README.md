@@ -7,7 +7,7 @@
 ## 模型构建
 在介绍模型定义之前首先介绍在较为古老的版本Keras构建模型的两种手段，**Sequential容器**和**Function API（函数式API）**。
 
-### Sequential
+### Sequential API
 `keras.Sequential`是一个包装张量运算的容器，这里的张量运算主要指封装完成的`keras.layers`或者继承自`keras.Model`的张量运算（前者如卷积操作，后者如resnet block模块）。
 
 该容器接收一个列表作为参数构建模型，列表中就是上述所说的各种张量运算，会返回一个Sequential类型的对象，该类其实是`keras.Model`的子类，拥有模型类的全部功能。例如下面构建的一个简单卷积分类器，其源码和输出如下。
