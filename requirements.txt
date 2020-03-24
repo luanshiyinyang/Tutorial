@@ -4,3 +4,4 @@ glob3
 tqdm
 pandas
 matplotlib
+pillow

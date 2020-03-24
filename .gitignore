@@ -8,4 +8,5 @@ Caltech101/
 *.zip
 *.csv
 *.h5
+*.pkl
 
