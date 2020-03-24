@@ -3,6 +3,7 @@
 __pycache__/
 101_ObjectCategories/
 Caltech101/
+logs/
 
 # file
 *.zip
