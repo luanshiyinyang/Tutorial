@@ -1,0 +1,8 @@
+# folders
+__pycache__/
+.idea/
+
+
+# file
+*.rar
+*.zip

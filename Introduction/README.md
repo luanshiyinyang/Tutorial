@@ -6,7 +6,7 @@ Fastai是一个课程平台，一个讨论社区，同样也是一个基于PyTor
 
 目前fastai只在Linux下稳定，mac和windows下不保证稳定性。Fastai类似Keras，封装顶层框架，对新手比较友好。Keras的后端框架为TensorFlow和Theano等，而Fastai的后端为PyTorch。**而且，类似Keras，Fastai不只是将PyTorch功能封装了比较“亲切”的API，而是让PyTorch的强大之处易用了**。
 
-在Kaggle等深度学习竞赛平台上，Fastai逐渐崭露头角。
+在Kaggle等深度学习竞赛平台上，Fastai逐渐崭露头角。这主要归功于Fastai设计之初就是一个交互式环境支持友好的框架，例如对Jupyter的支持。
 
 
 ## 安装
@@ -16,7 +16,7 @@ Fastai是一个课程平台，一个讨论社区，同样也是一个基于PyTor
 
 
 ## 模块
-下图是官方给出的核心模块的依赖关系。暂时不理解没关系，用了几次就明白了，和Keras还是很类似的。
+下图是官方给出的核心模块的依赖关系。暂时不理解没关系，用了几次就明白了，和Keras还是很类似的。**不同于其他的顶层深度学习框架，Fastai的模块是安装任务类型划分的，例如`fastai.vison`模块下就包含了视觉方面包括数据准备、模型构建、训练等API。**
 
 ![在这里插入图片描述](./assets/modules.png)
 
