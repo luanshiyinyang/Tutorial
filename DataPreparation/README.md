@@ -277,7 +277,7 @@ cutout(x, n_holes:uniform_int=1, length:uniform_int=40)
 孔洞产生。
 
 ### get_transforms()
-该函数封装在`fastai.vision.transform`模块下，返回两个变换列表（每个列表包含一系列变换），用于验证集和测试集。
+该函数封装在`fastai.vision.transform`模块下，返回两个变换列表（每个列表包含一系列变换），用于训练集和验证集。
 
 ```python
 get_transforms(do_flip:bool=True, flip_vert:bool=False, max_rotate:float=10.0, max_zoom:float=1.1, max_lighting:float=0.2, max_warp:float=0.2, p_affine:float=0.75, p_lighting:float=0.75, xtra_tfms:Optional[Collection[Transform]]=None)
