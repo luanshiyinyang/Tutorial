@@ -147,7 +147,7 @@ get_preds(
 ```
 指定`with_loss`后返回三个值，分别表示输出向量、标签索引、损失值，不设定`with_loss`则只输出前两者。
 
-### 训练集推理
+### 数据集推理（指标）
 通过`learner.validate(dl, callbacks, metrics)`对任意数据集生成的数据加载器进行结果推理（用于计算指标值，如损失和准确率等）。
 
 例如对验证集计算默认指标使用`learner_.validate(learner_.data.valid_dl)`就可以了。也可以通过`learner.show_results(ds_type, rows)`对数据集进行抽样推理并可视化。
