@@ -2,6 +2,7 @@
 __pycache__/
 .idea/
 101_ObjectCategories/
+.ipynb_checkpoints/
 
 # file
 *.rar
