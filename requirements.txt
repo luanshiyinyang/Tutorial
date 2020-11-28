@@ -1,0 +1,5 @@
+numpy~=1.19.4
+torch~=1.6.0
+networkx~=2.5
+matplotlib~=3.3.2
+dgl-cu102
