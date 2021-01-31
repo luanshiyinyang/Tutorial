@@ -309,7 +309,7 @@ workflow = [('train', 1)]
 - {neck}: 颈部网络名称如fpn, pafpn, nasfpn, c4。
 - [norm_setting]: 标准化设置，默认为BN可选为 gn (Group Normalization), syncbn (Synchronized Batch Normalization)，其中gn-head/gn-neck 表示GN仅仅用在head/neck中, 而gn-all意味着GN被用在整个模型中包括backbone、neck、head等。
 - [misc]: 杂项设置或者模型插件, 如dconv, gcb, attention等。
-- [gpu x batch_per_gpu]: GPU数目和每个GPU上放置样本量，默认为8x2，表示有8张卡，每张卡放两个样本。
+- \[gpu x batch_per_gpu]: GPU数目和每个GPU上放置样本量，默认为8x2，表示有8张卡，每张卡放两个样本。
 - {schedule}: 训练计划表，可选的是1x、2x、20e等。1x和2x表示单位轮数的几倍（默认12轮为一个单位轮数），20e在级联模型中使用，表示20轮。对于1x/2x，初始学习速率在8/16和11/22时衰减10倍。对于20e，初始学习速率在第16和第19个时期衰减10倍。
 - {dataset}: 数据集名称，如coco、voc_0712等。
 
