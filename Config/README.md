@@ -6,7 +6,7 @@
 
 ## 配置文件结构
 
-不同于Detectron2采用YAML文件作为配置文件的方式，MMDetection采用Python脚本作为配置文件，这一定程度上方便了解析。不过，在谈具体的配置文件的结构之前，首先介绍一个官方提供的工具，它位于mmdetection根目录的tools文件夹中，你可以在根目录下通过`python tools/print_config.py /path/to/config_file`来查看完整的配置，例如我们打印最基础的faster r-cnn的配置，命令为`python tools/print_config.py configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py`。
+不同于Detectron2采用YAML文件作为配置文件的方式，MMDetection采用Python脚本作为配置文件，这一定程度上方便了解析。不过，在谈具体的配置文件的结构之前，首先介绍一个官方提供的工具，它位于mmdetection根目录的tools文件夹中，你可以在根目录下通过`python tools/misc/print_config.py /path/to/config_file`来查看完整的配置，例如我们打印最基础的faster r-cnn的配置，命令为`python tools/misc/print_config.py configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py`。
 
 查看`faster_rcnn_r50_fpn_1x_coco.py`文件其实会发现，它只有如下的几行内容，显然，它是继承了_base_的配置文件作为自己的配置的，而`print_config.py`则打印层层继承后最终的配置文件内容，具体如下。
 
@@ -376,7 +376,7 @@ workflow = [('train', 1)]
 
 ```
 
-首先，我们要在`configs/faster_rcnn/`里新建`faster_rcnn_r50_fpn_1x_voc0712.py`文件，然后按部件分别继承模型、数据集和运行时的内容，然后修改数据集配置文件中的同名项`data_root`及相关的一些配置即可，具体内容如下。
+首先，我们要在`configs/faster_rcnn/`里新建`faster_rcnn_r50_fpn_1x_voc0712.py`文件，然后按部件分别继承模型、数据集和运行时的内容，然后修改数据集配置文件中的同名项`data_root`及相关的一些配置即可，同时模型的最终类别头的类别数也要修改，具体内容如下。
 
 ```
 _base_ = [
@@ -384,9 +384,40 @@ _base_ = [
     '../_base_/datasets/voc0712.py',
     '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
 ]
+
+model = dict(
+    roi_head=dict(
+        bbox_head=dict(num_classes=20)))
+
 dataset_type = 'VOCDataset'
 data_root = '/home/zhouchen/Datasets/VOC/VOCdevkit/'
-
+img_norm_cfg = dict(
+    mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
+train_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(type='LoadAnnotations', with_bbox=True),
+    dict(type='Resize', img_scale=(1000, 600), keep_ratio=True),
+    dict(type='RandomFlip', flip_ratio=0.5),
+    dict(type='Normalize', **img_norm_cfg),
+    dict(type='Pad', size_divisor=32),
+    dict(type='DefaultFormatBundle'),
+    dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels']),
+]
+test_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(
+        type='MultiScaleFlipAug',
+        img_scale=(1000, 600),
+        flip=False,
+        transforms=[
+            dict(type='Resize', keep_ratio=True),
+            dict(type='RandomFlip'),
+            dict(type='Normalize', **img_norm_cfg),
+            dict(type='Pad', size_divisor=32),
+            dict(type='ImageToTensor', keys=['img']),
+            dict(type='Collect', keys=['img']),
+        ])
+]
 data = dict(
     samples_per_gpu=2,
     workers_per_gpu=2,
@@ -400,23 +431,27 @@ data = dict(
                 data_root + 'VOC2012/ImageSets/Main/trainval.txt'
             ],
             img_prefix=[data_root + 'VOC2007/', data_root + 'VOC2012/'],
-            )),
+            pipeline=train_pipeline)),
     val=dict(
         type=dataset_type,
         ann_file=data_root + 'VOC2007/ImageSets/Main/test.txt',
         img_prefix=data_root + 'VOC2007/',
-        ),
+        pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         ann_file=data_root + 'VOC2007/ImageSets/Main/test.txt',
-        img_prefix=data_root + 'VOC2007/'))
+        img_prefix=data_root + 'VOC2007/',
+        pipeline=test_pipeline))
+evaluation = dict(interval=1, metric='mAP')
 ```
 
-然后我们使用` python tools/train.py configs/faster_rcnn/faster_rcnn_r50_fpn_1x_voc0712.py`在单卡上进行训练（需要注意的是，我这里没有按照官方建议修改学习率）。
+然后我们使用`python tools/train.py configs/faster_rcnn/faster_rcnn_r50_fpn_1x_voc0712.py --work-dir runs`在单卡上进行训练（需要注意的是，我这里没有按照官方建议修改学习率）。由于我这边是四卡的机器，因此我采用`bash tools/dist_train.sh configs/faster_rcnn/faster_rcnn_r50_fpn_1x_voc0712.py 4 --work-dir ./runs/`命令进行单机多卡训练。
 
-这也训练的话，训练日志默认保存在了项目根目录下的`work_dirs`里面，找到对应的实验，可以对其进行可视化分析，日志分析的模块对应的是`tools/analyze_logs.py`，我这里简单进行了loss和mAP曲线可视化，如下图。
+这也训练的话，训练日志默认保存在了项目根目录下的`work_dirs`里面，找到对应的实验，可以对其进行可视化分析，日志分析的模块对应的是`tools/analysis_tools/analyze_logs.py`，我这里简单进行了loss和mAP曲线可视化，如下图。
 
-![](占位)
+![](./assets/loss.png)
+
+![](./assets/mAP.png)
 
 ## 总结
 
