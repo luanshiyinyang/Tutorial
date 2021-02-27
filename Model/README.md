@@ -230,6 +230,8 @@ load_from = "http://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_r
 
 最后，可以通过分布式训练脚本进行训练，我这里对log中的loss进行了可视化，结果如下。
 
+![](./assets/loss.png)
+
 ## 总结
 
 本文主要介绍了MMDetection模型相关的内容，由于模型的构建本就是PyTorch的内容，所以本文就是简单叙述了一下和MMDetection这个框架对接的一些细节，本文也有[官网教程](https://mmdetection.readthedocs.io/en/latest/tutorials/customize_models.html)对应。最后，如果我的文章对你有所帮助，欢迎点赞收藏评论一键三连，你的支持是我不懈创作的动力。
