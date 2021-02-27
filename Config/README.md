@@ -378,7 +378,7 @@ workflow = [('train', 1)]
 
 首先，我们要在`configs/faster_rcnn/`里新建`faster_rcnn_r50_fpn_1x_voc0712.py`文件，然后按部件分别继承模型、数据集和运行时的内容，然后修改数据集配置文件中的同名项`data_root`及相关的一些配置即可，同时模型的最终类别头的类别数也要修改，具体内容如下。
 
-```
+```python
 _base_ = [
     '../_base_/models/faster_rcnn_r50_fpn.py',
     '../_base_/datasets/voc0712.py',
@@ -390,7 +390,7 @@ model = dict(
         bbox_head=dict(num_classes=20)))
 
 dataset_type = 'VOCDataset'
-data_root = '/home/zhouchen/Datasets/VOC/VOCdevkit/'
+data_root = '自己的数据集根目录'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [

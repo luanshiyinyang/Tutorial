@@ -210,7 +210,7 @@ classes = (
         'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person',
         'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor'
 )
-data_root = '/home/zhouchen/Datasets/VOC/VOCdevkit/'
+data_root = '自己的数据集根目录'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
