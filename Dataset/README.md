@@ -250,13 +250,13 @@ data = dict(
     val=dict(
         type=dataset_type,
         classes=classes,
-        nn_file=data_root + 'voc0712_val.json',
+        ann_file=data_root + 'voc0712_val.json',
         img_prefix=data_root,
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         classes=classes,
-        nn_file=data_root + 'voc0712_val.json',
+        ann_file=data_root + 'voc0712_val.json',
         img_prefix=data_root,
         pipeline=test_pipeline))
 evaluation = dict(interval=1, metric='bbox')
